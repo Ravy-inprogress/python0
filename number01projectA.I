@@ -3,7 +3,7 @@
 #primeiro importamos a api do GMINI e apelidamos como genai
 import google.genai as genai
 #aqui inserimos uma chave de api para ativar o acesso a api
-api_key = 'AIzaSyABTh8Z2yHGU83Tfqryu1zT2Eljt02LBVo'
+api_key = 'my_secret_key'
 #outra variavel para executar a chave de acesso
 client = genai.Client(api_key=api_key)
 loop while que executa o chat até o usuario pedir para sair
