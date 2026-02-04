@@ -1,0 +1,31 @@
+import os
+import shutil as sh
+def organizando_downloads(pasta):
+    #criar um dicionarios que tenha como chave o tipo de documento e sua extensão como valor
+    categories = {
+        "imagens": ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff'],
+        "documentos": ['.pdf', '.doc', '.docx', '.txt', '.xls', '.xlsx', '.ppt', '.pptx'],
+        "torrents e aplicativos": ['.torrent', '.exe', '.zip', '.rar'],
+         "Scripts": ['.py', '.js', '.html', '.css', '.sh', '.bat']
+    }
+
+#criando pastas caso não existam
+    for cat in categories:
+        caminho = os.path.join(pasta,cat)
+        if not os.path.exists(caminho):
+            os.mkdir(caminho)
+    
+#percorrendo arquivos na pasta de downloads e movendo para a pasta correspondente
+
+    for arquivo in os.listdir(pasta):
+        caminho_arquivo = os.path.join(pasta, arquivo)
+        if os.path.isfile(caminho_arquivo):
+            _, extensao = os.path.splitext(arquivo)
+            for categoria,extensoes in categories.items():
+                if extensao.lower() in extensoes:
+                    destino = os.path.join(pasta,categoria,arquivo)
+                    sh.move(caminho_arquivo,destino)
+                    print(f'Movido: {arquivo} para {categoria}')
+                    break
+    
+organizando_downloads('c:\\Users\\ravyr\\Downloads')
